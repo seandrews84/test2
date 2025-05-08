@@ -25,9 +25,9 @@ const ctx = new AudioCtx();
 /**
  * playTone(freq, duration = 0.35)
  * freq     : frequency in hertz
- * duration : seconds the tone plays
+ * duration : seconds the tone plays Changed from .35 to .9
  */
-function playTone(freq, duration = 0.35) {
+function playTone(freq, duration = 0.9) {
   // Many browsers block AudioContext until a user gesture; resume if needed
   if (ctx.state === "suspended") ctx.resume();
 
@@ -35,10 +35,10 @@ function playTone(freq, duration = 0.35) {
   const gain = ctx.createGain();        // volume envelope
 
   osc.frequency.value = freq;
-  osc.type = "sine";                    // try "square", "triangle", "sawtooth"
+  osc.type = "trianlge";                    // try "square", "triangle", "sawtooth"
 
   gain.gain.setValueAtTime(0.001, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.5, ctx.currentTime + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.02, ctx.currentTime + 0.01);
   gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
 
   osc.connect(gain).connect(ctx.destination);
@@ -148,5 +148,10 @@ pads.forEach(clr => {
 });
 
 // ---------- GAME START ----------
-addStep();      // create round 1
-playSequence(); // show it
+/* ----------  START BUTTON UNLOCKS AUDIO & GAME  ---------- */
+document.getElementById("startBtn").addEventListener("click", () => {
+  ctx.resume();          // unlock Web-Audio for first sound
+  addStep();             // create round 1
+  playSequence();        // show it
+  document.getElementById("startBtn").remove(); // hide button
+});
