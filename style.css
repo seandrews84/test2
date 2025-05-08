@@ -1,0 +1,42 @@
+/* ======================================
+   SIMON MEMORY CHALLENGE –  CSS
+   ======================================
+   Layout and “lit” animation only.
+   NO game logic – that stays in game.js
+*/
+
+/* --- Basic layout styles --- */
+body{
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f2f2f2;
+}
+
+/* 2×2 grid for the pads */
+#board{
+  display: grid;
+  grid-template-columns: repeat(2, 150px);
+  grid-gap: 20px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+/* --- Color pads (default, unlit) --- */
+.pad{
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  opacity: .7;           /* dim until “lit” */
+  cursor: pointer;
+  transition: opacity .15s ease;  /* smooth fade */
+}
+
+#green  {background:#19cf65;}
+#red    {background:#e52626;}
+#yellow {background:#ffda3a;}
+#blue   {background:#3a7bff;}
+
+/* --- Lit state (JS toggles this class) --- */
+.lit{
+  opacity:1 !important;
+}

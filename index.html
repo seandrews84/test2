@@ -1,0 +1,36 @@
+<!--
+  ===============================
+  SIMON MEMORY CHALLENGE – HTML
+  ===============================
+  *One job*: provide structure (no logic here)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simon Memory Challenge</title>
+
+  <!-- Link to external styles so we keep presentation separate -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Simple heading + instructions -->
+  <h1>Simon Says…</h1>
+  <p>Repeat the pattern. How far can you go?</p>
+
+  <!-- The four colored pads live in a 2×2 CSS Grid -->
+  <div id="board">
+    <div class="pad" id="green"></div>
+    <div class="pad" id="red"></div>
+    <div class="pad" id="yellow"></div>
+    <div class="pad" id="blue"></div>
+  </div>
+
+  <p>Round: <span id="round">0</span></p>
+
+  <!-- Link our JavaScript *after* the HTML so the DOM exists when JS runs -->
+  <script src="game.js"></script>
+</body>
+</html>
